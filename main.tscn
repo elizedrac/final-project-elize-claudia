@@ -35,6 +35,7 @@ volumetric_fog_ambient_inject = 6.11
 volumetric_fog_sky_affect = 0.849
 
 [sub_resource type="BoxMesh" id="BoxMesh_3en8q"]
+size = Vector3(15.305338, 0.089239, 15.305338)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_75345"]
 render_priority = 0
@@ -43,18 +44,17 @@ shader = ExtResource("1_5xxwi")
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qniwx"]
 
 [node name="Main" type="Node3D" unique_id=1393803173]
-transform = Transform3D(0.874276, 0, 0, 0, 0.874276, 0, 0, 0, 0.874276, 0, 0, 0)
 
 [node name="StartXR(fixed)" parent="." unique_id=1056203331 instance=ExtResource("2_5vc2l")]
 
 [node name="PLAYER XR Node3D" parent="." unique_id=475266733 instance=ExtResource("2_lawes")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.221898, 0)
+transform = Transform3D(0.874276, 0, 0, 0, 0.874276, 0, 0, 0, 0.874276, 0, 0.194, 0)
 
 [node name="WorldEnvironment (change sky to new image or proceddural sky)" type="WorldEnvironment" parent="." unique_id=1879493672]
 environment = SubResource("Environment_ceu5d")
 
 [node name="(SUN) DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1899932675]
-transform = Transform3D(0.941099, 0.149319, -0.303374, 0, 0.897211, 0.441601, 0.33813, -0.415591, 0.844365, 0.0358077, 5.48611, 1.82341)
+transform = Transform3D(0.941099, 0.149319, -0.303374, 0, 0.897211, 0.441601, 0.33813, -0.415591, 0.844365, 0.031306, 4.796374, 1.594164)
 light_color = Color(1, 1, 0.909804, 1)
 light_indirect_energy = 2.802
 light_volumetric_fog_energy = 3.237
@@ -64,16 +64,16 @@ shadow_enabled = true
 [node name="(FLOOR) StaticBody3D" type="StaticBody3D" parent="." unique_id=121042251]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="(FLOOR) StaticBody3D" unique_id=276068112]
-transform = Transform3D(17.5063, 0, 0, 0, 0.10207204, 0, 0, 0, 17.5063, 0.00024243387, -0.27335316, 0.028326312)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177336, -0.208188, 0.247739)
 mesh = SubResource("BoxMesh_3en8q")
 surface_material_override/0 = SubResource("ShaderMaterial_75345")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="(FLOOR) StaticBody3D" unique_id=303110291]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018617, -0.188919, 0.0024325203)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016276, -0.165167, 0.002127)
 shape = SubResource("WorldBoundaryShape3D_qniwx")
 
 [node name="GazeDetector" type="Node" parent="." unique_id=556886957]
 script = ExtResource("9_gaze")
 
 [node name="ChangeableObject" parent="." unique_id=237467922 instance=ExtResource("9_chobj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.022, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 1.133973, -2.852892)
