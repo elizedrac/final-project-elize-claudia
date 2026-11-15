@@ -68,6 +68,8 @@ func _on_area_entered(other: Area3D) -> void:
 	if debug_print:
 		print("gaze entered: ", target.name)
 	gaze_entered.emit(target)
+	if target is ChangeableObject:
+		(target as ChangeableObject).on_gaze_entered()
 
 
 func _on_area_exited(other: Area3D) -> void:
@@ -77,3 +79,5 @@ func _on_area_exited(other: Area3D) -> void:
 	if debug_print:
 		print("gaze exited: ", target.name)
 	gaze_exited.emit(target)
+	if target is ChangeableObject:
+		(target as ChangeableObject).on_gaze_exited()

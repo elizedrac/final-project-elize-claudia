@@ -1,12 +1,10 @@
-[gd_scene format=4 uid="uid://b0h6xlyni6gnd"]
+[gd_scene format=3 uid="uid://b0h6xlyni6gnd"]
 
 [ext_resource type="Shader" uid="uid://daj13pvf5x3ej" path="res://GVassets/shaders/glassy.tres" id="1_5xxwi"]
-
-[ext_resource type="Script" path="res://gaze_detector.gd" id="9_gaze"]
-[ext_resource type="PackedScene" path="res://changeable_object.tscn" id="9_chobj"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="2_5vc2l"]
-
 [ext_resource type="PackedScene" uid="uid://d3wnmtlefyc6d" path="res://GVassets/PlayerGV.tscn" id="2_lawes"]
+[ext_resource type="PackedScene" path="res://changeable_object.tscn" id="9_chobj"]
+[ext_resource type="Script" uid="uid://d1nxu7tc5t7ni" path="res://gaze_detector.gd" id="9_gaze"]
 
 [sub_resource type="ProceduralSkyMaterial" id="PanoramaSkyMaterial_m6rx7"]
 sky_top_color = Color(0.35, 0.55, 0.85, 1)
@@ -23,7 +21,6 @@ sky = SubResource("Sky_48t4u")
 ambient_light_source = 3
 ambient_light_color = Color(0.344865, 0.331296, 0.323753, 1)
 ambient_light_sky_contribution = 0.96
-ambient_light_energy = 1.0
 reflected_light_source = 2
 tonemap_mode = 2
 fog_sun_scatter = 0.37
@@ -75,8 +72,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_75345")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018617, -0.188919, 0.0024325203)
 shape = SubResource("WorldBoundaryShape3D_qniwx")
 
-[node name="GazeDetector" type="Node" parent="."]
+[node name="GazeDetector" type="Node" parent="." unique_id=556886957]
 script = ExtResource("9_gaze")
 
-[node name="ChangeableObject" parent="." instance=ExtResource("9_chobj")]
+[node name="ChangeableObject" parent="." unique_id=237467922 instance=ExtResource("9_chobj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.022, -2)

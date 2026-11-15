@@ -10,6 +10,7 @@ extends MeshInstance3D
 @export var min_hidden_time: float = 0.5
 
 var _material: StandardMaterial3D
+var _hidden_timer: Timer
 
 
 func _ready() -> void:
@@ -18,6 +19,23 @@ func _ready() -> void:
 	_material = StandardMaterial3D.new()
 	_material.albedo_color = Color.from_hsv(randf(), 0.8, 0.9)
 	material_override = _material
+
+	# Fires once the object has been out of view for min_hidden_time.
+	_hidden_timer = Timer.new()
+	_hidden_timer.one_shot = true
+	_hidden_timer.timeout.connect(on_look_away)
+	add_child(_hidden_timer)
+
+
+## Called by GazeDetector when this object leaves the gaze cone.
+func on_gaze_exited() -> void:
+	_hidden_timer.start(maxf(min_hidden_time, 0.01))
+
+
+## Called by GazeDetector when this object enters the gaze cone. Never changes
+## anything: it only cancels a change that has not happened yet.
+func on_gaze_entered() -> void:
+	_hidden_timer.stop()
 
 
 func on_look_away() -> void:
