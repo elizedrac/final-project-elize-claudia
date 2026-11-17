@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://d3wnmtlefyc6d" path="res://GVassets/PlayerGV.tscn" id="2_lawes"]
 [ext_resource type="PackedScene" path="res://changeable_object.tscn" id="9_chobj"]
 [ext_resource type="Script" uid="uid://d1nxu7tc5t7ni" path="res://gaze_detector.gd" id="9_gaze"]
+[ext_resource type="PackedScene" path="res://ball.tscn" id="10_ball"]
+[ext_resource type="PackedScene" path="res://target.tscn" id="10_target"]
+[ext_resource type="Script" uid="uid://dmpb06h1cpcx" path="res://table_shift.gd" id="11_table"]
 
 [sub_resource type="ProceduralSkyMaterial" id="PanoramaSkyMaterial_m6rx7"]
 sky_top_color = Color(0.35, 0.55, 0.85, 1)
@@ -42,6 +45,19 @@ render_priority = 0
 shader = ExtResource("1_5xxwi")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qniwx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_table"]
+albedo_color = Color(0.35, 0.22, 0.11, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_table"]
+material = SubResource("StandardMaterial3D_table")
+size = Vector3(0.5, 0.8, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_table"]
+size = Vector3(0.5, 0.8, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tablegaze"]
+size = Vector3(0.6, 1, 0.5)
 
 [node name="Main" type="Node3D" unique_id=1393803173]
 
@@ -104,3 +120,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8090094, 2.5549688, -2.852
 
 [node name="ChangeableObject6" parent="." unique_id=1693120650 instance=ExtResource("9_chobj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9489627, 2.4173841, -1.5459399)
+
+[node name="Target" parent="." unique_id=838154818 instance=ExtResource("10_target")]
+transform = Transform3D(0.97237, 0, 0.23345, 0, 1, 0, -0.23345, 0, 0.97237, 1.2, -0.164, -5)
+
+[node name="BallTable" type="StaticBody3D" parent="." unique_id=1234149471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.236, 0.05)
+script = ExtResource("11_table")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BallTable" unique_id=2029005116]
+mesh = SubResource("BoxMesh_table")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BallTable" unique_id=848029850]
+shape = SubResource("BoxShape3D_table")
+
+[node name="GazeTarget" type="Area3D" parent="BallTable" unique_id=48319845]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BallTable/GazeTarget" unique_id=497053640]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_tablegaze")
+
+[node name="Ball1" parent="." unique_id=97471248 instance=ExtResource("10_ball")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.7, -0.05)
+
+[node name="Ball2" parent="." unique_id=1366309227 instance=ExtResource("10_ball")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.7, -0.05)
+
+[node name="Ball3" parent="." unique_id=31590207 instance=ExtResource("10_ball")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.7, 0.15)
+
+[node name="Ball4" parent="." unique_id=1333622332 instance=ExtResource("10_ball")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.7, 0.15)

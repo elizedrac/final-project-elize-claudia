@@ -33,6 +33,8 @@ func _ready() -> void:
 
 ## Called by GazeDetector when this object leaves the gaze cone.
 func on_gaze_exited() -> void:
+	if not _hidden_timer.is_inside_tree():
+		return  # scene is closing
 	_hidden_timer.start(maxf(min_hidden_time, 0.01))
 
 
