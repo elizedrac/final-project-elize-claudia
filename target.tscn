@@ -1,49 +1,31 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://target.gd" id="1_script"]
 [ext_resource type="PackedScene" path="res://target.glb" id="2_model"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_board"]
 size = Vector3(1.06, 1.06, 0.2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ledge"]
-size = Vector3(1, 0.04, 0.16)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hit"]
-size = Vector3(1.1, 1.1, 0.3)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_gaze"]
-size = Vector3(1.1, 1.65, 0.6)
-
 [node name="Target" type="Node3D"]
-script = ExtResource("1_script")
 
 [node name="Model" parent="." instance=ExtResource("2_model")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2, 0)
+
+[node name="Ledge" parent="Model/Target" index="1"]
+visible = false
+
+[node name="Leg_Back" parent="Model/Target" index="2"]
+visible = false
+
+[node name="Leg_L" parent="Model/Target" index="3"]
+visible = false
+
+[node name="Leg_R" parent="Model/Target" index="4"]
+visible = false
 
 [node name="Body" type="StaticBody3D" parent="."]
 
 [node name="Board" type="CollisionShape3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -0.08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.08)
 shape = SubResource("BoxShape3D_board")
 
-[node name="Ledge" type="CollisionShape3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, -0.03)
-shape = SubResource("BoxShape3D_ledge")
-
-[node name="HitZone" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 4
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HitZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0.13)
-shape = SubResource("BoxShape3D_hit")
-
-[node name="GazeTarget" type="Area3D" parent="."]
-collision_layer = 512
-collision_mask = 0
-monitoring = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GazeTarget"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-shape = SubResource("BoxShape3D_gaze")
+[editable path="Model"]

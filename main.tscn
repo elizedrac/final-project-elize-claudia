@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://d1nxu7tc5t7ni" path="res://gaze_detector.gd" id="9_gaze"]
 [ext_resource type="PackedScene" path="res://ball.tscn" id="10_ball"]
 [ext_resource type="PackedScene" path="res://target.tscn" id="10_target"]
-[ext_resource type="Script" uid="uid://dmpb06h1cpcx" path="res://table_shift.gd" id="11_table"]
 
 [sub_resource type="ProceduralSkyMaterial" id="PanoramaSkyMaterial_m6rx7"]
 sky_top_color = Color(0.35, 0.55, 0.85, 1)
@@ -56,9 +55,6 @@ size = Vector3(0.5, 0.8, 0.4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_table"]
 size = Vector3(0.5, 0.8, 0.4)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tablegaze"]
-size = Vector3(0.6, 1, 0.5)
-
 [node name="Main" type="Node3D" unique_id=1393803173]
 
 [node name="StartXR(fixed)" parent="." unique_id=1056203331 instance=ExtResource("2_5vc2l")]
@@ -74,8 +70,7 @@ transform = Transform3D(0.941099, 0.149319, -0.303374, 0, 0.897211, 0.441601, 0.
 light_color = Color(1, 1, 0.909804, 1)
 light_indirect_energy = 2.802
 light_volumetric_fog_energy = 3.237
-light_angular_distance = 23.43
-shadow_enabled = true
+light_angular_distance = 0.5
 
 [node name="(FLOOR) StaticBody3D" type="StaticBody3D" parent="." unique_id=121042251]
 
@@ -91,27 +86,14 @@ shape = SubResource("WorldBoundaryShape3D_qniwx")
 [node name="GazeDetector" type="Node" parent="." unique_id=556886957]
 script = ExtResource("9_gaze")
 
-[node name="Target" parent="." unique_id=838154818 instance=ExtResource("10_target")]
-transform = Transform3D(0.97237, 0, 0.23345, 0, 1, 0, -0.23345, 0, 0.97237, 1.2, -0.164, -5)
-
 [node name="BallTable" type="StaticBody3D" parent="." unique_id=1234149471]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.236, 0.05)
-script = ExtResource("11_table")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BallTable" unique_id=2029005116]
 mesh = SubResource("BoxMesh_table")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BallTable" unique_id=848029850]
 shape = SubResource("BoxShape3D_table")
-
-[node name="GazeTarget" type="Area3D" parent="BallTable" unique_id=48319845]
-collision_layer = 512
-collision_mask = 0
-monitoring = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BallTable/GazeTarget" unique_id=497053640]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-shape = SubResource("BoxShape3D_tablegaze")
 
 [node name="Ball1" parent="." unique_id=97471248 instance=ExtResource("10_ball")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.7, -0.05)
@@ -190,3 +172,15 @@ transform = Transform3D(0.96, 0, 0, 0, 0.96, 0, 0, 0, 0.96, 3.14, 2.42, 6.05)
 
 [node name="Shape22" parent="." unique_id=1509497615 instance=ExtResource("9_chobj")]
 transform = Transform3D(1.26, 0, 0, 0, 1.26, 0, 0, 0, 1.26, 5.65, 0.277, 5.65)
+
+[node name="Target1" parent="." unique_id=2076880035 instance=ExtResource("10_target")]
+transform = Transform3D(0.70711, 0, 0.70711, 0, 1, 0, -0.70711, 0, 0.70711, -4.5, 1.5, -4.5)
+
+[node name="Target2" parent="." unique_id=1142303738 instance=ExtResource("10_target")]
+transform = Transform3D(0.70711, 0, -0.70711, 0, 1, 0, 0.70711, 0, 0.70711, 4.5, 1.5, -4.5)
+
+[node name="Target3" parent="." unique_id=1154324690 instance=ExtResource("10_target")]
+transform = Transform3D(-0.70711, 0, -0.70711, 0, 1, 0, 0.70711, 0, -0.70711, 4.5, 1.5, 4.5)
+
+[node name="Target4" parent="." unique_id=1422519266 instance=ExtResource("10_target")]
+transform = Transform3D(-0.70711, 0, 0.70711, 0, 1, 0, -0.70711, 0, -0.70711, -4.5, 1.5, 4.5)
