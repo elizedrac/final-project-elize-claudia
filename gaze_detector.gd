@@ -13,7 +13,7 @@ const GAZE_LAYER: int = 1 << 9
 ## so anything outside it is truly off-screen.
 @export_range(5.0, 80.0, 1.0) var half_angle_degrees: float = 55.0
 ## Length of the cone in meters.
-@export var length: float = 10.0
+@export var length: float = 25.0
 ## Print enter/exit events to the console.
 @export var debug_print: bool = false
 

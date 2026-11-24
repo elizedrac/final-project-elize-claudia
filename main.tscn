@@ -178,9 +178,12 @@ transform = Transform3D(0.70711, 0, 0.70711, 0, 1, 0, -0.70711, 0, 0.70711, -4.5
 
 [node name="Target2" parent="." unique_id=1142303738 instance=ExtResource("10_target")]
 transform = Transform3D(0.70711, 0, -0.70711, 0, 1, 0, 0.70711, 0, 0.70711, 4.5, 1.5, -4.5)
+shift_direction = 1
 
 [node name="Target3" parent="." unique_id=1154324690 instance=ExtResource("10_target")]
 transform = Transform3D(-0.70711, 0, -0.70711, 0, 1, 0, 0.70711, 0, -0.70711, 4.5, 1.5, 4.5)
+shift_direction = 2
 
 [node name="Target4" parent="." unique_id=1422519266 instance=ExtResource("10_target")]
 transform = Transform3D(-0.70711, 0, 0.70711, 0, 1, 0, -0.70711, 0, -0.70711, -4.5, 1.5, 4.5)
+shift_direction = 3
